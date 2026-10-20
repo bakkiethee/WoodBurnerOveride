@@ -200,7 +200,11 @@ class WoodController:
     async def async_set_manual(self, on: bool) -> None:
         self.manual_on = on
         self._notify_listeners()
-        await self._tick(None)
+        # Entering or leaving wood mode can take a minute (waiting for the rooms),
+        # so the switch call must not wait for it.
+        self.entry.async_create_background_task(
+            self.hass, self._tick(None), "wood_stove_mode_manual_tick"
+        )
 
     # ------------------------------------------------------------------ tick
 
