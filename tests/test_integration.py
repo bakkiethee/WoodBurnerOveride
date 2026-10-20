@@ -202,7 +202,7 @@ async def test_manual_switch_starts_wood_mode(hass: HomeAssistant):
     await hass.services.async_call(
         "switch", "turn_on", {"entity_id": "switch.wood_stove_mode_wood_mode"}, blocking=True
     )
-    await hass.async_block_till_done()
+    await hass.async_block_till_done(wait_background_tasks=True)
     assert controller.engine.state.mode == "wood"
 
 
@@ -249,3 +249,4 @@ async def _run_flow(hass: HomeAssistant):
     )
     assert result["type"] is FlowResultType.CREATE_ENTRY
     assert result["data"]["rooms"][0]["climate"] == LIVING
+
