@@ -1,0 +1,14 @@
+{
+  "domain": "wood_stove_mode",
+  "name": "Wood Stove Mode",
+  "codeowners": [],
+  "config_flow": true,
+  "dependencies": [],
+  "after_dependencies": ["climate", "number", "notify"],
+  "documentation": "https://github.com/bakkiethee/WoodBurnerOveride",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/bakkiethee/WoodBurnerOveride/issues",
+  "requirements": [],
+  "version": "0.1.0"
+}

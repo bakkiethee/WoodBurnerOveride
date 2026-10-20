@@ -1,0 +1,97 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Wood Stove Mode",
+        "description": "Choose the temperature sensors and the climate entities. Each location should have two redundant sensors.",
+        "data": {
+          "stove_sensors": "Wood stove temperature sensors",
+          "exchanger_sensors": "Heat exchanger temperature sensors (boiler room)",
+          "water_sensor": "Boiler system water temperature (from the OTGW)",
+          "sat_entity": "SAT climate entity",
+          "nest_entity": "Thermostat that talks to the OTGW (optional)",
+          "notify_service": "Notify service, for example notify.mobile_app_phone (optional)"
+        }
+      },
+      "room": {
+        "title": "Add a TRV room",
+        "description": "Every TRV room is inhibited in wood mode. Rooms marked as dump rooms receive the stove heat; all others are held closed. The inhibition entity is the input_boolean or switch that the vtherm_inhibition plugin watches for this room.",
+        "data": {
+          "name": "Room name",
+          "climate": "Versatile Thermostat climate entity",
+          "opening_entity": "Valve opening entity (number)",
+          "inhibit_entity": "Inhibition source entity (input_boolean or switch)",
+          "dump": "Dump heat into this room",
+          "add_another": "Add another room"
+        }
+      }
+    },
+    "error": {
+      "sensors_required": "Choose at least one sensor for the stove and for the heat exchanger."
+    },
+    "abort": {
+      "single_instance_allowed": "Wood Stove Mode is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Wood Stove Mode",
+        "menu_options": {
+          "settings": "Thresholds, PID and notifications",
+          "add_room": "Add a room",
+          "remove_room": "Remove rooms"
+        }
+      },
+      "settings": {
+        "title": "Settings",
+        "data": {
+          "stove_start_temp": "Stove temperature that starts wood mode",
+          "exit_temp": "Heat exchanger temperature that ends wood mode",
+          "min_wood_minutes": "Minimum time in wood mode",
+          "reentry_minutes": "Delay before wood mode can start again",
+          "band_low": "Heat exchanger band, low",
+          "band_high": "Heat exchanger band, high",
+          "band_aim": "Heat exchanger aim",
+          "water_target": "System water target",
+          "update_seconds": "Minimum time between valve changes",
+          "start_opening": "Valve opening when wood mode starts",
+          "emergency_temp": "Emergency overheat temperature",
+          "nest_setpoint": "Thermostat setpoint during wood mode",
+          "sensor_diff": "Largest accepted difference between two sensors",
+          "stale_minutes": "Sensor counts as failed after",
+          "release_timeout": "Time to wait for a room to be released",
+          "pid_kp": "PID gain P",
+          "pid_ki": "PID gain I",
+          "pid_kd": "PID gain D",
+          "notify_mode": "Notify when wood mode starts or ends",
+          "notify_emergency": "Notify on emergency",
+          "notify_nest": "Notify when the thermostat setpoint is reset",
+          "notify_service": "Notify service (optional)"
+        }
+      },
+      "add_room": {
+        "title": "Add a TRV room",
+        "data": {
+          "name": "Room name",
+          "climate": "Versatile Thermostat climate entity",
+          "opening_entity": "Valve opening entity (number)",
+          "inhibit_entity": "Inhibition source entity (input_boolean or switch)",
+          "dump": "Dump heat into this room"
+        }
+      },
+      "remove_room": {
+        "title": "Remove rooms",
+        "data": {
+          "remove": "Rooms to remove"
+        }
+      }
+    },
+    "error": {
+      "band_order": "The low end of the band must be below the high end.",
+      "aim_outside_band": "The aim must be inside the band.",
+      "emergency_too_low": "The emergency temperature must be above the top of the band."
+    }
+  },
+  "entity": {}
+}
